@@ -3,14 +3,18 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-/*
+/**
     Represents the home screen for the MediLink appointment system.
 
     This class welcomes the user and handles all options regarding scheduling appointments.
-    main()       -> Home screen menu
-    employeeMenu -> Employee sub-menu
-    patientMenu  -> Patient sub-menu
-    prompt       -> Helper method for user prompts
+    main(String) -> Home screen menu
+    employeeMenu() -> Employee sub-menu
+    patientMenu() -> Patient sub-menu
+    addAppointment() -> Method to add appointments
+    printAppointments() -> Method to print all appointments
+    viewMyAppointments() -> Method to view personal appointments
+    scheduleAppointment() -> Method to schedule an appointment
+    prompt(String) -> Helper method for user prompts
  */
 public class HomeScreen {
     private static final Scanner scanner = new Scanner(System.in);
