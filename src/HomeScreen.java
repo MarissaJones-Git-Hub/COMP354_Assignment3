@@ -18,6 +18,7 @@ import java.util.Scanner;
  */
 public class HomeScreen {
     private static final Scanner scanner = new Scanner(System.in);
+    private static final Calendar calendar = new Calendar();
 
     /*
         Main menu and landing page for users.
@@ -157,9 +158,10 @@ public class HomeScreen {
         }
 
         /*
-            Creates a new appointment object.
+            Creates a new appointment object and adds it to the calendar.
          */
         Appointment appointment = new Appointment(doctor, date, time);
+        Calendar.addAppointment(appointment);
         System.out.println("Appointment slot has successfully been added at the following date and time:");
         System.out.println(appointment);
     }
