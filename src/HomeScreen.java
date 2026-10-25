@@ -1,20 +1,17 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
-    Represents the home screen for the MediLink appointment system.
+ Represents the home screen for the MediLink appointment system.
 
-    This class welcomes the user and handles all options regarding scheduling appointments.
-    main(String) -> Home screen menu
-    employeeMenu() -> Employee sub-menu
-    patientMenu() -> Patient sub-menu
-    addAppointment() -> Method to add appointments
-    printAppointments() -> Method to print all appointments
-    viewMyAppointments() -> Method to view personal appointments
-    scheduleAppointment() -> Method to schedule an appointment
-    prompt(String) -> Helper method for user prompts
+ This class welcomes the user and handles all options regarding scheduling appointments.
+ main(String) -> Home screen menu
+ employeeMenu() -> Employee sub-menu
+ patientMenu() -> Patient sub-menu
+ addAppointment() -> Method to add appointments
+ printAppointments() -> Method to print all appointments
+ viewMyAppointments() -> Method to view personal appointments
+ scheduleAppointment() -> Method to schedule an appointment
+ prompt(String) -> Helper method for user prompts
  */
 public class HomeScreen {
     private static final Scanner scanner = new Scanner(System.in);
@@ -94,89 +91,9 @@ public class HomeScreen {
     /*
         Employee Only.
         This method allows an employee to add an open appointment slot.
-        Collects information on the doctor, the date, and the time for the appointment, including formatting checks.
-        Creates an Appointment object with the given information and prints the added slot.
-        Returns to previous menu on "0".
      */
     private static void addAppointment() {
-        System.out.println("\nAdd an appointment slot!");
-        System.out.println("Enter 0 at any point to return to the previous menu.");
-
-        /*
-            Enter the doctor's name, repeat until the user produces a valid name, returns to previous menu on "0".
-         */
-        String doctor;
-        while (true) {
-            doctor = prompt("Doctor's first and last name: ");
-            if (doctor.equals("0")) {
-                System.out.println("Returning to previous menu...\n");
-                return;
-            }
-            if (!doctor.isEmpty()) break;
-            System.out.println("Doctor name cannot be empty, please try again.");
-        }
-
-        /*
-            Enter the appointment date, repeat until the user produces a valid date, returns to previous menu on "0".
-         */
-        LocalDate date;
-        while (true) {
-            String input = prompt("Date (YYYY-MM-DD): ");
-            if (input.equals("0")) {
-                System.out.println("Returning to previous menu...\n");
-                return;
-            }
-            try {
-                date = LocalDate.parse(input);
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid date format, please try again.");
-                continue;
-            }
-            if (date.isBefore(LocalDate.now())) {
-                System.out.println("The date cannot be in the past, please try again.");
-                continue;
-            }
-            break;
-        }
-
-        /*
-            Enter the appointment time, repeat until the user produces a valid time, returns to previous menu on "0".
-         */
-        LocalTime time;
-        while (true) {
-            String input = prompt("Time (HH:MM, 24-hour): ");
-            if (input.equals("0")) {
-                System.out.println("Returning to previous menu...\n");
-                return;
-            }
-            try {
-                time = LocalTime.parse(input);
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid time format, please try again.");
-                continue;
-            }
-            if (date.equals(LocalDate.now()) && time.isBefore(LocalTime.now())) {
-                System.out.println("The time cannot be in the past, please try again.");
-                continue;
-            }
-
-            /*
-                Checks if an appointment slot already exists for a doctor.
-             */
-            if (calendar.hasSlot(doctor, date, time)){
-                System.out.println("This doctor already has an appointment in this slot, please try again.");
-                continue;
-            }
-            break;
-        }
-
-        /*
-            Creates a new appointment object and adds it to the calendar.
-         */
-        Appointment appointment = new Appointment(doctor, date, time);
-        calendar.addAppointment(appointment);
-        System.out.println("Appointment slot has successfully been added at the following date and time:");
-        System.out.println(appointment);
+        new AddAppointment(calendar).run();
     }
 
     /*
@@ -211,7 +128,7 @@ public class HomeScreen {
         If the scanner has information, read and trim the line and return it as a prompt.
         Return 0 if there is no more input to treat as "Exit" or "Go back to home screen".
      */
-    private static String prompt(String message) {
+    public static String prompt(String message) {
         System.out.print(message);
         return scanner.hasNextLine() ? scanner.nextLine().trim() : "0";
     }
