@@ -10,7 +10,6 @@ import java.time.format.DateTimeParseException;
     promptDoctor() -> prompts user for doctor name
     promptDate() -> prompts user for appointment date
     promptTime(String, LocalDate) -> prompts user for appointment time and checks calendar for duplicate appointments
-    prompt(String) -> Helper method for user prompts
  */
 public class AddAppointment {
     private final Calendar calendar;
