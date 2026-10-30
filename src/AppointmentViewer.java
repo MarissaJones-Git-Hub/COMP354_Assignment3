@@ -1,7 +1,11 @@
 
+/**
+ * Displays scheduled appointments for employees and patients.
+ * Each appointment includes its doctor, date, time, and patient.
+ */
 public class AppointmentViewer {
 
-    // Employee view: displays all booked appointments.
+    // Employees can view all booked appointments.
     public void viewAppointments(Calendar calendar) {
         boolean found = false;
 
@@ -18,9 +22,15 @@ public class AppointmentViewer {
         }
     }
 
-    // Patient view: displays appointments booked by this patient.
+    // Patients can view appointments booked under their name.
     public void viewAppointments(Calendar calendar, String patientName) {
+        if (patientName == null || patientName.trim().isEmpty()) {
+            System.out.println("Please enter your name.");
+            return;
+        }
+
         boolean found = false;
+        patientName = patientName.trim();
 
         for (Appointment appointment : calendar.getAppointments()) {
             if (appointment.isBooked()
@@ -33,7 +43,8 @@ public class AppointmentViewer {
         }
 
         if (!found) {
-            System.out.println("No scheduled appointments for this patient.");
+            System.out.println(
+                    "No scheduled appointments for this patient.");
         }
     }
 }
