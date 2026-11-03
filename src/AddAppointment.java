@@ -45,8 +45,10 @@ public class AddAppointment {
          */
         Appointment appointment = new Appointment(doctor, date, time);
         calendar.addAppointment(appointment);
+        System.out.println();
         System.out.println("Appointment slot has successfully been added at the following date and time:");
         System.out.println(appointment);
+        System.out.println();
     }
 
     /*

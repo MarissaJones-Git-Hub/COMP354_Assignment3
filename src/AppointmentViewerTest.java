@@ -10,7 +10,7 @@ public class AppointmentViewerTest {
 
     public static void main(String[] args) {
         Calendar calendar = new Calendar();
-        AppointmentViewer viewer = new AppointmentViewer();
+        AppointmentViewer viewer = new AppointmentViewer(calendar);
         Scanner scanner = new Scanner(System.in);
 
         Appointment first = new Appointment(
@@ -49,7 +49,7 @@ public class AppointmentViewerTest {
                 case "1":
                     System.out.println(
                             "\n--- All Scheduled Appointments ---");
-                    viewer.viewAppointments(calendar);
+                    viewer.viewAppointments();
                     break;
 
                 case "2":
@@ -58,7 +58,7 @@ public class AppointmentViewerTest {
 
                     System.out.println(
                             "\n--- My Scheduled Appointments ---");
-                    viewer.viewAppointments(calendar, patientName);
+                    viewer.viewAppointments(patientName);
                     break;
 
                 case "0":

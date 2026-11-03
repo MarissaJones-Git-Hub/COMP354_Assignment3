@@ -33,9 +33,9 @@ public class AppointmentBooking {
 
         appointment.book(patientName.trim());
 
-        System.out.println("Appointment successfully booked.");
+        System.out.println("Appointment successfully booked.\n");
         System.out.println(appointment);
-
+        System.out.println();
         return true;
     }
 
@@ -75,7 +75,7 @@ public class AppointmentBooking {
 
                 System.out.println("Appointment successfully booked.");
                 System.out.println(appointment);
-
+                System.out.println();
                 return true;
             }
         }

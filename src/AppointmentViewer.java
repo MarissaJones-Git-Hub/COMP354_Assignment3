@@ -5,8 +5,14 @@
  */
 public class AppointmentViewer {
 
+    private final Calendar calendar;
+
+    public AppointmentViewer(Calendar calendar) {
+        this.calendar = calendar;
+    }
+
     // Employees can view all booked appointments.
-    public void viewAppointments(Calendar calendar) {
+    public void viewAppointments() {
         boolean found = false;
 
         for (Appointment appointment : calendar.getAppointments()) {
@@ -23,7 +29,7 @@ public class AppointmentViewer {
     }
 
     // Patients can view appointments booked under their name.
-    public void viewAppointments(Calendar calendar, String patientName) {
+    public void viewAppointments(String patientName) {
         if (patientName == null || patientName.trim().isEmpty()) {
             System.out.println("Please enter your name.");
             return;
